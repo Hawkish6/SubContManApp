@@ -6,8 +6,6 @@ app.config(['$httpProvider', function ($httpProvider) {
 }]);
 
 
-
-
 app.controller('PersonController', ['$scope', '$http', function ($scope, $http) {
     $scope.persons = [];
     $scope.person = {};
