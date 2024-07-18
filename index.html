@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html ng-app="personApp">
+<head>
+    <title>Person Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-controller="PersonController">
+    <div class="container">
+
+        <table class="table  headerContainer ">
+            <tr>
+                <td>
+                    <div class="headerContainer">
+                        <h1>Subscriber Contact Manager</h1>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <!-- Section for Viewing All Persons -->
+        <table class="table table-striped">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="search">Search: </label>
+                        <input type="text" id="search" class="form-control" ng-model="searchQuery" placeholder="Enter last name">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="content">
+
+            <div class="contacts">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Add/Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="person in persons | filter:{lastName: searchQuery}">
+                            <td>{{person.firstName}}</td>
+                            <td>{{person.lastName}}</td>
+                            <td>
+                                <button class="btn btn-warning" ng-click="updatePerson(person)">View/Edit</button>
+                                <button class="btn btn-danger" ng-click="deletePerson(person.id)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Form Section for Adding/Editing Persons -->
+            <div class="form-section">
+                <table class="table table-striped">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                &nbsp; <b>Add/View or Edit Record</b>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <form ng-submit="savePerson()">
+                    <div class="form-group">
+                        <label for="firstName">*First Name:</label>
+                        <input type="text" class="form-control" id="firstName" ng-model="person.firstName" placeholder="Enter first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">*Last Name:</label>
+                        <input type="text" class="form-control" id="lastName" ng-model="person.lastName" placeholder="Enter last name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">*Email:</label>
+                        <input type="text" class="form-control" id="email" ng-model="person.email" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">*Phone:</label>
+                        <input type="text" class="form-control" id="phone" ng-model="person.phone" placeholder="Enter phone" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="location.reload();">Reset</button>
+                    <br /><br />
+                    Click Reset button to start a new record
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
