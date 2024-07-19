@@ -62,8 +62,6 @@ app.controller('PersonController', ['$scope', '$http', function ($scope, $http) 
     $scope.resetForm = function () {
        // $scope.resetForm();
         $scope.person = {};
-        $scope.personForm.$setPristine(); // Reset the form state
-        $scope.personForm.$setUntouched(); // Reset the form's touched state
     };
 
     // Initialize by fetching all persons
